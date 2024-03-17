@@ -25,7 +25,7 @@ public:
 
     void Start()
     {
-        app->skybox = Vector3(0.0f, 0.0f, 0.0f);
+        app->skybox = Vector3(0.1f, 0.1f, 0.1f);
 
         app->campos = (Vector3(0, 0, -5));
         app->camfov = 90;
