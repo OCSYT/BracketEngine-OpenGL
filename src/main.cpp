@@ -47,11 +47,15 @@ int main() {
     program->SetEngine(engine);
     engine->EngineStart();
     program->Start();
-    // Loop until the user closes the window
+    float oldTimeSinceStart = 0;
+    float deltaTime = 0;
     while (!glfwWindowShouldClose(window)) {
+        float timeSinceStart = static_cast<float>(glfwGetTime());
+        deltaTime = timeSinceStart - oldTimeSinceStart;
+        oldTimeSinceStart = timeSinceStart;
         glUseProgram(Rendering->shaderProgram);
-        engine->EngineUpdate();
-        program->Update();
+        engine->EngineUpdate(deltaTime);
+        program->Update(deltaTime);
 
         glUseProgram(0);
         // Swap front and back buffers

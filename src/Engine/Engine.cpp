@@ -96,7 +96,7 @@ public:
         glfwSetMouseButtonCallback(CurrentWindow, Input::MouseButtonCallback);
     }
 
-    void EngineUpdate()
+    void EngineUpdate(float deltaTime)
     {
         glfwGetWindowSize(CurrentWindow, &ScreenWidth, &ScreenHeight);
         UpdateCamera(ScreenWidth, ScreenHeight);

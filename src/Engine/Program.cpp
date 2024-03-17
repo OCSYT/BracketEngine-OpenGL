@@ -31,10 +31,10 @@ public:
         app->camfov = 90;
     }
 
-    void Update()
+    void Update(float deltaTime)
     {
 
-        float cameraSpeed = 0.05f;
+        float cameraSpeed = 5 * deltaTime;
 
         if (Input::GetKey(GLFW_KEY_W))
         {
@@ -61,7 +61,7 @@ public:
         if (app->mouseLocked)
         {
             double deltaX, deltaY;
-            std::tie(app->camrot, lastx, lasty, deltaX, deltaY) = Cam.UpdateMouse(app->CurrentWindow, app->mouseLocked, lastx, lasty, mousex, mousey, .1f);
+            std::tie(app->camrot, lastx, lasty, deltaX, deltaY) = Cam.UpdateMouse(app->CurrentWindow, app->mouseLocked, lastx, lasty, mousex, mousey, 10 * deltaTime);
             mousex += deltaX;
             mousey += deltaY;
             mousey = std::clamp(mousey, -90.0, 90.0);
