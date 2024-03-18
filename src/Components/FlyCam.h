@@ -13,7 +13,7 @@ private:
 public:
     FlyCam(GameObject& obj) : obj(obj) {}
 
-    void UpdatePos(Engine* app){
+    void UpdatePos(Engine* app, float cameraSpeed){
         if (Input::GetKey(GLFW_KEY_W))
         {
             app->campos = app->campos + app->GetCameraForwardDirection() * cameraSpeed;

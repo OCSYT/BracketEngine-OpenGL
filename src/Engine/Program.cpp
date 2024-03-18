@@ -42,7 +42,7 @@ public:
         float cameraSpeed = 5 * deltaTime;
         if (app->mouseLocked)
         {
-            Cam.UpdatePos(app);
+            Cam.UpdatePos(app, cameraSpeed);
             
             double deltaX, deltaY;
             std::tie(app->camrot, lastx, lasty, deltaX, deltaY) = Cam.UpdateMouse(app->CurrentWindow, lastx, lasty, mousex, mousey, 10 * deltaTime);
