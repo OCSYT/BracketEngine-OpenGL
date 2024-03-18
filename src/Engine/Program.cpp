@@ -59,12 +59,12 @@ public:
         }
         if (Input::GetKey(GLFW_KEY_SPACE))
         {
-            app->campos = app->campos + app->GetCameraUpDirection() *-cameraSpeed;
+            app->campos = app->campos + Vector3(0, 1, 0) *-cameraSpeed;
         }
 
         if (Input::GetKey(GLFW_KEY_LEFT_CONTROL))
         {
-            app->campos = app->campos + app->GetCameraUpDirection() * cameraSpeed;
+            app->campos = app->campos + Vector3(0, 1, 0) * cameraSpeed;
         }
 
         app->ToggleMouseLock(true);
