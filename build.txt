@@ -1,2 +1,2 @@
-cd C:\Users\Creep\Documents\GitHub\BracketEngine\bin
+cd ./bin
 mingw32-make

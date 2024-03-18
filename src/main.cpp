@@ -6,8 +6,8 @@
 #include "Quaternion.h"
 #include "Vector.h"
 #include "GameObject.h"
-#include "Engine/Input.cpp"
-#include "Engine/Program.cpp"
+#include "./Engine/Input.cpp"
+#include "./Engine/Program.cpp"
 #include "Shaders.cpp"
 
 int SCREEN_WIDTH = 800;
