@@ -15,11 +15,6 @@ class Shaders{
     public:
     unsigned int shaderProgram;
 
-    #include <vector>
-    #include <string>
-
-    #include <filesystem>
-
     void CreateShaders() {
         std::vector<std::string> shaderPaths;
         for (const auto& entry : std::filesystem::directory_iterator("./Shaders")) {
