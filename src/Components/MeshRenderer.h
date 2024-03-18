@@ -17,7 +17,7 @@ private:
 public:
     MeshRenderer(GameObject &obj) : obj(obj) {}
 
-    GLuint loadTexture(const std::string &path)
+    GLuint LoadTexture(const std::string &path)
     {
         // Check if texture already loaded
         auto it = textureCache.find(path);
@@ -105,8 +105,17 @@ public:
         return textureID;
     }
 
-    void render(std::string modelPath, std::vector<std::string> texturePaths)
+    void ClearCache(){
+        textureCache = std::map<std::string, GLuint>();
+    }
+
+    void Render(std::string modelPath, std::vector<std::string> texturePaths, objl::Material defaultMaterial)
     {
+        glPushMatrix();
+        glTranslatef(obj.position.x, obj.position.y, obj.position.z);
+        glRotatef(obj.rotation.x, 1.0f, 0.0f, 0.0f);
+        glRotatef(obj.rotation.y, 0.0f, 1.0f, 0.0f);
+        glRotatef(obj.rotation.z, 0.0f, 0.0f, 1.0f);
         // Load the OBJ File
         if (!modelLoaded)
         {
@@ -121,15 +130,6 @@ public:
             }
         }
 
-        objl::Material defaultMaterial;
-        defaultMaterial.Ka = objl::Vector3(1.0f, 1.0f, 1.0f); // Ambient color
-        defaultMaterial.Kd = objl::Vector3(1.0f, 1.0f, 1.0f); // Diffuse color
-        defaultMaterial.Ks = objl::Vector3(1.0f, 1.0f, 1.0f); // Specular color
-        defaultMaterial.Ns = 0.0f;                            // Specular exponent
-        defaultMaterial.Ni = 1.0f;                            // Optical density
-        defaultMaterial.d = 1.0f;                             // Dissolve variable
-        defaultMaterial.illum = 2;                            // Illumination variable
-
         int index = 0;
         // Loop through each loaded mesh and draw it
         for (const auto &mesh : loader.LoadedMeshes)
@@ -139,19 +139,15 @@ public:
             {
                 if (index < texturePaths.size())
                 {
-                    GLuint textureID = loadTexture(texturePaths[index]);
+                    GLuint textureID = LoadTexture(texturePaths[index]);
                     glBindTexture(GL_TEXTURE_2D, textureID);
                 }
                 else
                 {
-                    GLuint textureID = loadTexture("./Textures/Required/None.png");
-                    glBindTexture(GL_TEXTURE_2D, textureID);
                 }
             }
             else
             {
-                GLuint textureID = loadTexture("./Textures/Required/None.png");
-                glBindTexture(GL_TEXTURE_2D, textureID);
             }
 
             const auto &material = defaultMaterial;

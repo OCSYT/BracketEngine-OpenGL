@@ -12,6 +12,8 @@
 #include <sstream>
 #include <string>
 #include <filesystem>
+#include "../OBJ_Loader.h"
+
 namespace fs = std::filesystem;
 
 class Engine

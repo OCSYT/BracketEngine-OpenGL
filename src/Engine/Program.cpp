@@ -34,6 +34,8 @@ public:
     void Update(float deltaTime)
     {
 
+        //Camera controls
+
         float cameraSpeed = 5 * deltaTime;
 
         if (Input::GetKey(GLFW_KEY_W))
@@ -67,9 +69,18 @@ public:
             mousey = std::clamp(mousey, -90.0, 90.0);
         }
 
-        float currentTime = static_cast<float>(glfwGetTime());
-        Cube.rotation = Vector3(0.0f, currentTime, 0.0f);
 
-        Renderer.render("./Models/nardo.obj", std::vector<std::string> { ""});
+        //Scene Rendering
+
+        //render primitve cube
+        objl::Material defaultMaterial;
+        defaultMaterial.Ka = objl::Vector3(1.0f, 1.0f, 1.0f); // Ambient color
+        defaultMaterial.Kd = objl::Vector3(1.0f, 1.0f, 1.0f); // Diffuse color (albedo)
+        defaultMaterial.Ks = objl::Vector3(1.0f, 1.0f, 1.0f); // Specular color
+        defaultMaterial.Ns = 0.0f;                            // Specular exponent
+        defaultMaterial.Ni = 1.0f;                            // Optical density
+        defaultMaterial.d = 1.0f;                             // Dissolve variable
+        defaultMaterial.illum = 2;                            // Illumination variable
+        Renderer.Render("./Models/cube.obj", std::vector<std::string> {}, defaultMaterial);
     }
 };
