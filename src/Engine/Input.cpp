@@ -1,4 +1,5 @@
 #include "Input.h"
+#include <GLFW/glfw3.h>
 
 std::unordered_map<int, int> Input::previousKeyState;
 std::unordered_map<int, int> Input::keyState;
