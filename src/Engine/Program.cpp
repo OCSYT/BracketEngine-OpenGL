@@ -50,6 +50,8 @@ public:
             mousex += deltaX;
             mousey += deltaY;
             mousey = std::clamp(mousey, -90.0, 90.0);
+            Camera.position = app->campos;
+            Camera.rotation = app->camrot;
         }
 
 
