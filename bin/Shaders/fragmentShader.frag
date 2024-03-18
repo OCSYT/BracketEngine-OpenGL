@@ -1,10 +1,10 @@
-uniform sampler2D textureSampler; // Texture sampler uniform
+uniform sampler2D texture2;
 
-varying vec2 texCoord; // Texture coordinates
+void main()
+{
+    // lookup the pixel in the texture
+    vec4 pixel = texture2D(texture2, gl_TexCoord[0].xy);
 
-void main() {
-    // Sample color from the texture using texture coordinates
-    vec4 textureColor = texture2D(textureSampler, texCoord);
-    // Multiply the sampled texture color with the vertex color
-    gl_FragColor = textureColor * vertexColor;
+    // multiply it by the color
+    gl_FragColor = pixel;
 }

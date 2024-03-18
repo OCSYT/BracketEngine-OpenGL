@@ -57,6 +57,15 @@ public:
         {
             app->campos = app->campos + app->GetCameraRightDirection() * cameraSpeed;
         }
+        if (Input::GetKey(GLFW_KEY_SPACE))
+        {
+            app->campos = app->campos + app->GetCameraUpDirection() *-cameraSpeed;
+        }
+
+        if (Input::GetKey(GLFW_KEY_LEFT_CONTROL))
+        {
+            app->campos = app->campos + app->GetCameraUpDirection() * cameraSpeed;
+        }
 
         app->ToggleMouseLock(true);
 
@@ -81,6 +90,6 @@ public:
         defaultMaterial.Ni = 1.0f;                            // Optical density
         defaultMaterial.d = 1.0f;                             // Dissolve variable
         defaultMaterial.illum = 2;                            // Illumination variable
-        Renderer.Render("./Models/cube.obj", std::vector<std::string> {}, defaultMaterial);
+        Renderer.Render("./Models/cube.obj", std::vector<std::string> {"./Textures/Required/None.png"}, defaultMaterial);
     }
 };

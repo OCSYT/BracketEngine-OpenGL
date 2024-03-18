@@ -13,6 +13,9 @@
 #include <string>
 #include <filesystem>
 #include "../OBJ_Loader.h"
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 namespace fs = std::filesystem;
 
