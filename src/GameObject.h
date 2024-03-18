@@ -6,20 +6,19 @@
 #include <vector>
 #include <memory>
 
-// Forward declaration
-class Component;
 
 class GameObject {
 
 public:
     Vector3 position;
     Vector3 rotation;
+    Vector3 scale; // New member variable for scale
 
-    GameObject(const Vector3& position, const Vector3& rotation)
-        : position(position), rotation(rotation) {}
+    GameObject(const Vector3& position, const Vector3& rotation, const Vector3& scale)
+        : position(position), rotation(rotation), scale(scale) {}
 
 private:
-    std::vector<std::shared_ptr<Component>> components;
+
 };
 
 #endif

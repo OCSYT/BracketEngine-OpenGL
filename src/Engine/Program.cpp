@@ -14,9 +14,9 @@ public:
     }
 
     // Scene
-    GameObject Cube = GameObject(Vector3(), Vector3(0, 0, 0));
+    GameObject Cube = GameObject(Vector3(), Vector3(0,0,0), Vector3(1,1,1));
     MeshRenderer Renderer = MeshRenderer(Cube);
-    GameObject Camera = GameObject(Vector3(), Vector3());
+    GameObject Camera = GameObject(Vector3(), Vector3(), Vector3(1,1,1));
     FlyCam Cam = FlyCam(Camera);
 
     // Variables
@@ -36,50 +36,21 @@ public:
 
         //Camera controls
 
-        float cameraSpeed = 5 * deltaTime;
-
-        if (Input::GetKey(GLFW_KEY_W))
-        {
-            app->campos = app->campos + app->GetCameraForwardDirection() * cameraSpeed;
-        }
-
-        if (Input::GetKey(GLFW_KEY_A))
-        {
-            app->campos = app->campos + app->GetCameraRightDirection() * -cameraSpeed;
-        }
-
-        if (Input::GetKey(GLFW_KEY_S))
-        {
-            app->campos = app->campos + app->GetCameraForwardDirection() * -cameraSpeed;
-        }
-
-        if (Input::GetKey(GLFW_KEY_D))
-        {
-            app->campos = app->campos + app->GetCameraRightDirection() * cameraSpeed;
-        }
-        if (Input::GetKey(GLFW_KEY_SPACE))
-        {
-            app->campos = app->campos + Vector3(0, 1, 0) *-cameraSpeed;
-        }
-
-        if (Input::GetKey(GLFW_KEY_LEFT_CONTROL))
-        {
-            app->campos = app->campos + Vector3(0, 1, 0) * cameraSpeed;
-        }
-
         app->ToggleMouseLock(true);
 
+
+        float cameraSpeed = 5 * deltaTime;
         if (app->mouseLocked)
         {
+            Cam.UpdatePos(app);
+            
             double deltaX, deltaY;
-            std::tie(app->camrot, lastx, lasty, deltaX, deltaY) = Cam.UpdateMouse(app->CurrentWindow, app->mouseLocked, lastx, lasty, mousex, mousey, 10 * deltaTime);
+            std::tie(app->camrot, lastx, lasty, deltaX, deltaY) = Cam.UpdateMouse(app->CurrentWindow, lastx, lasty, mousex, mousey, 10 * deltaTime);
             mousex += deltaX;
             mousey += deltaY;
             mousey = std::clamp(mousey, -90.0, 90.0);
         }
 
-
-        //Scene Rendering
 
         //render primitve cube
         objl::Material defaultMaterial;
@@ -90,6 +61,6 @@ public:
         defaultMaterial.Ni = 1.0f;                            // Optical density
         defaultMaterial.d = 1.0f;                             // Dissolve variable
         defaultMaterial.illum = 2;                            // Illumination variable
-        Renderer.Render("./Models/cube.obj", std::vector<std::string> {"./Textures/Required/None.png"}, defaultMaterial);
+        Renderer.Render("./Models/Primitive/cube.obj", std::vector<std::string> {"./Textures/Required/None.png"}, defaultMaterial);
     }
 };

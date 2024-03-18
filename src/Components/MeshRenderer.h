@@ -168,8 +168,9 @@ public:
                     // Assign texture coordinates
                     glTexCoord2f(vertex.TextureCoordinate.X, vertex.TextureCoordinate.Y);
 
+
                     // Draw vertex
-                    glVertex3f(vertex.Position.X, vertex.Position.Y, vertex.Position.Z);
+                    glVertex3f(vertex.Position.X * obj.scale.x, vertex.Position.Y * obj.scale.y, vertex.Position.Z * obj.scale.z);
                 }
 
                 glEnd();

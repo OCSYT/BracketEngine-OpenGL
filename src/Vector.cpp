@@ -39,6 +39,7 @@ float Vector3::length() const
     return std::sqrt(x * x + y * y + z * z);
 }
 
+
 Vector3 Vector3::normalize() const
 {
     float len = length();
@@ -51,5 +52,5 @@ Vector3 Vector3::normalize() const
         newy /= len;
         newz /= len;
     }
-    return Vector3(newx,newy,newz);
+    return Vector3(newx, newy, newz);
 }
