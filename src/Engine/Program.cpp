@@ -28,6 +28,7 @@ public:
         app->skybox = Vector3(0.1f, 0.1f, 0.1f);
 
         app->campos = (Vector3(0, 0, -5));
+        app->camrot = Vector3();
         app->camfov = 90;
     }
 
