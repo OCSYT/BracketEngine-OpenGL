@@ -1,2 +1,2 @@
-#include "../Components/CubeRenderer.h"
+#include "../Components/MeshRenderer.h"
 #include "../Components/FlyCam.h"

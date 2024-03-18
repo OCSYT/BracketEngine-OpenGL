@@ -15,7 +15,7 @@ public:
 
     // Scene
     GameObject Cube = GameObject(Vector3(), Vector3(0, 0, 0));
-    CubeRenderer Renderer = CubeRenderer(Cube);
+    MeshRenderer Renderer = MeshRenderer(Cube);
     GameObject Camera = GameObject(Vector3(), Vector3());
     FlyCam Cam = FlyCam(Camera);
 
@@ -70,6 +70,6 @@ public:
         float currentTime = static_cast<float>(glfwGetTime());
         Cube.rotation = Vector3(0.0f, currentTime, 0.0f);
 
-        Renderer.render();
+        Renderer.render("./Models/nardo.obj", std::vector<std::string> { ""});
     }
 };

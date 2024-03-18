@@ -43,6 +43,7 @@ int main() {
     Engine* engine = new Engine();
     Program* program = new Program();
     Rendering->CreateShaders();
+    engine->shaderProgram = &Rendering->shaderProgram;
     engine->SetWindow(window);
     program->SetEngine(engine);
     engine->EngineStart();
@@ -53,6 +54,8 @@ int main() {
         float timeSinceStart = static_cast<float>(glfwGetTime());
         deltaTime = timeSinceStart - oldTimeSinceStart;
         oldTimeSinceStart = timeSinceStart;
+
+        engine->shaderProgram = &Rendering->shaderProgram;
         glUseProgram(Rendering->shaderProgram);
         engine->EngineUpdate(deltaTime);
         program->Update(deltaTime);
@@ -60,6 +63,7 @@ int main() {
         glUseProgram(0);
         // Swap front and back buffers
         glfwSwapBuffers(window);
+        
 
         // Poll for and process events
         glfwPollEvents();
